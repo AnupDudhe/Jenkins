@@ -1,0 +1,30 @@
+1) Create a repository
+2) Create a clone of repo with our git 
+3) Create a file in vs code and push into the gihub
+   #!/bin/bash
+   sudo apt update
+   sudo apt-get install nginx
+   sudo systemctl start nginx
+4) Create a node in jenkins  
+4) Create a webhooks in github by using :-
+   http://ip_address:8080/github-webhook
+5) Go into jenkins pipeline and add git hub link into git hub option and check on webhooks
+6) Write a pipeline in groovy
+  pipeline {
+    agent{
+        label 'label_name'
+    }
+    stages{
+        stage("Git Pull"){
+            steps{
+            sh'''
+            git clone (link of github)
+            '''
+            sh'''
+            sudo bash ./repo_name/file_name
+            '''
+            }
+        }
+    }
+}
+    
