@@ -52,3 +52,18 @@ sudo yum install fontconfig java-17-openjdk
 sudo yum install jenkins
 sudo systemctl daemon-reload
 ```
+### Maven phases online documentation and maven repository to refer 
+```
+https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+https://mvnrepository.com/
+```
+### jenkins installation doc and pipeline syntax
+```
+https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+
+https://www.jenkins.io/doc/book/pipeline/
+```
+### jenkins plugin url
+```
+https://plugins.jenkins.io/
+```
