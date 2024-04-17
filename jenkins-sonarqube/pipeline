@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    stages {
+        stage('Pull') { 
+            steps {
+                git 'https://github.com/shubhamkalsait/studentapp-ui.git'
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh '/opt/apache-maven/bin/mvn clean package'
+            }
+        }
+        stage('test') { 
+            steps {
+                withSonarQubeEnv(installationName: 'sonar', credentialsId: 'sonarqube-token') {
+                    sh '/opt/apache-maven/bin/mvn sonar:sonar -Dsonar.projectKey=studentapp-new'
+                }
+            }
+        }
+        stage('quality-gate') { 
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://65.2.82.93:8080/')], contextPath: '/', war: '**/*.war'
+            }
+        }
+    }
+}
