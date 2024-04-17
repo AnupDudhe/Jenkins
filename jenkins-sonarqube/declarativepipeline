@@ -23,6 +23,16 @@ pipeline {
                 echo "we are building"
             }   
         }
+
+         stage (test){
+            steps{
+                sh '''
+                mvn sonar:sonar   -Dsonar.projectKey=studentapp   -Dsonar.host.url=http://54.185.185.192:9000   -Dsonar.login=cc1037b0373621e83ae38d0918e2469e83de4040
+                '''
+                echo "we are testing"
+            }   
+        }
+
         stage (deploy){
             steps{
                 sh '''
