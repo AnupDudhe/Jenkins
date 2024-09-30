@@ -19,6 +19,7 @@ sudo apt-get update
 sudo apt-get install jenkins -y
 sudo apt install openjdk-11-jre-headless -y
 sudo systemctl start jenkins
+update-alternatives --config java
 
 ```
 
