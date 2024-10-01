@@ -72,3 +72,6 @@ sonar.jdbc.username=sonarqube'
 sonar.jdbc.password=Cloudblitz@123'
 
 wp-config
+
+curl localhost:9000 #toaceessyoursonarqube
+use openjdk17 java instead of bellsoft if your using latest sonarqube version
