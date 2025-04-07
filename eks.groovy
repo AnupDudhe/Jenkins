@@ -1,14 +1,12 @@
 pipeline {
-  agent {label "webserver"}
+  agent { label 'webserver' }
 
   environment {
-    AWS_REGION = "ap-south-1"
-    TF_IN_AUTOMATION = "true"
+    AWS_REGION = 'ap-south-1'
+    TF_IN_AUTOMATION = 'true'
   }
 
-  tools {
-    terraform 'terraform-latest' // Or whatever name you configured in Jenkins tools
-  }
+ 
 
   stages {
     stage('Checkout Code') {
@@ -19,35 +17,21 @@ pipeline {
 
     stage('Terraform Init') {
       steps {
-        withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: 'aws-creds'
-        ]]) {
-          sh 'terraform init'
-        }
+        sh 'terraform init'
       }
     }
 
     stage('Terraform Plan') {
       steps {
-        withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: 'aws-creds'
-        ]]) {
-          sh 'terraform plan -out=tfplan'
-        }
+          echo "we are planning"
+      //  sh 'terraform plan -out=tfplan'
       }
     }
 
     stage('Terraform Apply') {
       steps {
-        input message: "Do you want to apply these changes?"
-        withCredentials([[
-          $class: 'AmazonWebServicesCredentialsBinding',
-          credentialsId: 'aws-creds'
-        ]]) {
-          sh 'terraform apply -auto-approve tfplan'
-        }
+        input message: 'Do you want to apply these changes?'
+        sh 'terraform destroy -auto-approve'
       }
     }
   }
