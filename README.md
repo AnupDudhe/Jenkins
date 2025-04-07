@@ -70,3 +70,10 @@ https://plugins.jenkins.io/
 
 /var/lib/jenkins/secrets# cat initialAdminPassword 
 ```
+
+### change java version 
+```
+sudo update-alternatives --config java   - for ubuntu
+sudo alternatives --config java  - for redhat based
+```
+     
