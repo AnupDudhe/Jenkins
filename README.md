@@ -67,4 +67,6 @@ https://www.jenkins.io/doc/book/pipeline/
 ### jenkins plugin url
 ```
 https://plugins.jenkins.io/
+
+/var/lib/jenkins/secrets# cat initialAdminPassword 
 ```
