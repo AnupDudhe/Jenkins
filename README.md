@@ -76,4 +76,7 @@ https://plugins.jenkins.io/
 sudo update-alternatives --config java   - for ubuntu
 sudo alternatives --config java  - for redhat based
 ```
-     
+### jenkins url
+```
+http://jenkinserverIP:8080/github-webhook/
+```
